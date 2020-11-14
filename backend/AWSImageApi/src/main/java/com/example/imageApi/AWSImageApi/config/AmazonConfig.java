@@ -8,8 +8,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.example.imageApi.AWSImageApi.projectKeys.AWSKeys.AWS_ACCESS_KEY;
-import static com.example.imageApi.AWSImageApi.projectKeys.AWSKeys.AWS_SECRET_KEY;
+import static com.example.imageApi.AWSImageApi.projectKeys.AWSKeys.*;
 
 //This class will provide us with the aws S3 client
 @Configuration
@@ -20,6 +19,6 @@ public class AmazonConfig {
         AWSCredentials awsCredentials = new BasicAWSCredentials(
                 AWS_ACCESS_KEY,AWS_SECRET_KEY
         );
-        return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
+        return AmazonS3ClientBuilder.standard().withRegion(REGION).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
     }
 }
