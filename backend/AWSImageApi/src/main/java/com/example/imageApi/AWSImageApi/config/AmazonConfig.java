@@ -11,9 +11,10 @@ import org.springframework.context.annotation.Configuration;
 import static com.example.imageApi.AWSImageApi.projectKeys.AWSKeys.AWS_ACCESS_KEY;
 import static com.example.imageApi.AWSImageApi.projectKeys.AWSKeys.AWS_SECRET_KEY;
 
-
+//This class will provide us with the aws S3 client
 @Configuration
 public class AmazonConfig {
+
     @Bean
     public AmazonS3 s3(){
         AWSCredentials awsCredentials = new BasicAWSCredentials(
