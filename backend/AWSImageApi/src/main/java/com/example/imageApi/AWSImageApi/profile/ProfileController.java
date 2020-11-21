@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api-v1/userProfile")
+@CrossOrigin("*")
 public class ProfileController {
 
     private final ProfileService profileService;
