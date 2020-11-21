@@ -6,15 +6,11 @@ import java.util.UUID;
 
 public class UserProfile {
 
-    private UUID id;
-    private String userName;
+    private final UUID id;
+    private final String userName;
 
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     @Override
@@ -36,9 +32,6 @@ public class UserProfile {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
     //Optional.ofNullable means that this value might be null
     public Optional<String> getProfileImageLink() {
         return Optional.ofNullable(profileImageLink);
