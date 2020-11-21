@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
@@ -21,17 +20,28 @@ const UserProfiles = () => {
       <br /><br />
       <h1>{user.userName}</h1>
       <p>{user.id}</p>
-      <MyDropzone />
+      <MyDropzone id={user.id}/>
       <br />
     </div>)
 
   })
 }
 
-function MyDropzone() {
+function MyDropzone({id}) {
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
     console.log(file);
+    const formData = new FormData();
+    formData.append("file", file);
+    axios.post(`http://localhost:8080/api-v1/userProfile/${id}/image/upload`,formData,
+    {
+      Headers:{
+      "Content-Type": "multipart/form-data"
+    }}).then(()=>{
+      console.log("File uploaded successfully")
+    }).catch(err =>{
+      console.log(err)
+    })
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
