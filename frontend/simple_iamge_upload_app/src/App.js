@@ -33,9 +33,10 @@ function MyDropzone({id}) {
     console.log(file);
     const formData = new FormData();
     formData.append("file", file);
-    axios.post(`http://localhost:8080/api-v1/userProfile/${id}/image/upload`,formData,
+    axios.post(`http://localhost:8080/api-v1/userProfile/${id}/image/upload`,
+    formData,
     {
-      Headers:{
+      headers: {
       "Content-Type": "multipart/form-data"
     }}).then(()=>{
       console.log("File uploaded successfully")
