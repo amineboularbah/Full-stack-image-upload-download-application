@@ -16,13 +16,15 @@ const UserProfiles = () => {
     fetchUserProfiles();
   }, []);
   return userProfiles.map((user, index) => {
-    return (<div key={index}>
-      {user.id ? <img className="image" src={`http://localhost:8080/api-v1/userProfile/${user.id}/image/download`}></img> : null }
-      <br /><br />
+    return (<div className="card" key={index}>
+      {user.id ? <img className="image" src={`http://localhost:8080/api-v1/userProfile/${user.id}/image/download`}></img> : null}
+      <br />
+
       <h1>{user.userName}</h1>
       <p>{user.id}</p>
       <MyDropzone id={user.id} />
       <br />
+
     </div>)
 
   })
