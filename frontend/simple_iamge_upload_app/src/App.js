@@ -4,15 +4,24 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 const UserProfiles = () => {
+  const [userProfiles, setUserProfiles] = useState([]);
   const fetchUserProfiles = () => {
     axios.get("http://localhost:8080/api-v1/userProfile").then(res => {
       console.log(res);
+      setUserProfiles(res.data);
+
     })
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchUserProfiles();
   }, []);
-  return <h1>Hello</h1>
+  return userProfiles.map((user, index) => {
+    return (<div key={index}>
+      <h1>{user.userName}</h1>
+      <p>{user.id}</p>
+    </div>)
+
+  })
 }
 
 
