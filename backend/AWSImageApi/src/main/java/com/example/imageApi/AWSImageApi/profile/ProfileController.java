@@ -32,4 +32,9 @@ public class ProfileController {
     public void uploadProfileImage(@PathVariable("id")UUID id, @RequestParam("file")MultipartFile file){
     profileService.uploadProfileImage(id,file);
     }
+
+    @GetMapping("{id}/image/download")
+    public byte[] downloadUserProfileImage(@PathVariable("id")UUID id){
+    return profileService.downloadUserProfileImage(id);
+    }
 }

@@ -56,6 +56,14 @@ public class ProfileService {
             throw new IllegalStateException(e);
         }
     }
+    public byte[] downloadUserProfileImage(UUID id) {
+        UserProfile user = getUserProfile(id);
+        String path =String.format("%s/%s",
+                BucketName.PROFILE_IMAGE.getBucketName(),
+                user.getId());
+        return user.getProfileImageLink()
+                .map(key -> fileStore.download(path,key)).orElse(new byte[0]);
+    }
 
     private Map<String, String> extractMetaData(MultipartFile file) {
         Map<String, String> metaData = new HashMap<>();
@@ -83,4 +91,5 @@ public class ProfileService {
             throw new IllegalStateException("File is Empty");
         }
     }
+
 }
