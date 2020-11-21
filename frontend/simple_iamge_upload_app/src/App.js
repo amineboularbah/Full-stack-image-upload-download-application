@@ -17,7 +17,7 @@ const UserProfiles = () => {
   }, []);
   return userProfiles.map((user, index) => {
     return (<div key={index}>
-      {user.id ? <img src={`http://localhost:8080/api-v1/userProfile/${user.id}/image/download`}></img> : null }
+      {user.id ? <img className="image" src={`http://localhost:8080/api-v1/userProfile/${user.id}/image/download`}></img> : null }
       <br /><br />
       <h1>{user.userName}</h1>
       <p>{user.id}</p>
@@ -41,7 +41,7 @@ function MyDropzone({ id }) {
           "Content-Type": "multipart/form-data"
         }
       }).then(() => {
-        console.log("File uploaded successfully")
+        window.location.reload(false);
       }).catch(err => {
         console.log(err)
       })
